@@ -5,12 +5,6 @@ import {useStore} from "../helpers/use-store";
 import {observer} from "mobx-react-lite";
 import {AlertFilled} from '@ant-design/icons';
 import {runInAction} from "mobx";
-//@ts-ignore
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
-
-// @ts-ignore
-// eslint-disable-next-line import/no-webpack-loader-syntax
-mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 
 const MapBox = ReactMapboxGl({
     accessToken:

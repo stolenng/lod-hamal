@@ -7,7 +7,10 @@ import reportWebVitals from './reportWebVitals';
 import {StoreProvider} from './helpers/store-provider';
 import RootStore from "./stores/root-store";
 import {ConfigProvider} from "antd";
-
+//@ts-ignore
+import mapboxgl from "mapbox-gl/dist/mapbox-gl";
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default
 
 const rootStore = new RootStore();
 
