@@ -13,7 +13,6 @@ const rootStore = new RootStore();
 
 const init = async () => {
     await rootStore.fetch();
-// await rootStore.update();
     ReactDOM.render(
         <React.StrictMode>
             <ConfigProvider direction="rtl">

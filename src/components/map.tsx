@@ -17,16 +17,15 @@ const MapBox = ReactMapboxGl({
 const Map = () => {
     const rootStore = useStore();
 
-    console.log(rootStore.tickets)
     return (
         <MapBox
-            center={[31.942449253421216, 34.88433243329109]}
+            center={[34.88433243329109, 31.942449253421216]}
             style="mapbox://styles/mapbox/streets-v9"
             containerStyle={{
                 height: '100vh',
                 width: '100vw'
             }}
-            zoom={[2]}
+            zoom={[15]}
             fitBounds={[
                 [34.896954, 31.975458],
                 [34.890157, 31.931560,]
@@ -35,9 +34,9 @@ const Map = () => {
                 (_, e) => {
                     runInAction(() => {
                     //@ts-ignore
-                        rootStore.currentLocation.lat = e.lngLat.lng;
-                    //@ts-ignore
                         rootStore.currentLocation.lat = e.lngLat.lat;
+                    //@ts-ignore
+                        rootStore.currentLocation.lng = e.lngLat.lng;
                     })
                     rootStore.setModal(true);
                 }
@@ -52,7 +51,7 @@ const Map = () => {
                                     rootStore.setModal(true);
                                 }}
                                 key={index}
-                                coordinates={[ticket.coordinates.lat, ticket.coordinates.lng]}
+                                coordinates={[ticket.coordinates.lng, ticket.coordinates.lat]}
                             >
                                 <span className='title'>{ticket.title}</span>
                                 <img  src=" https://img.icons8.com/color/48/000000/marker.png" />

@@ -39,8 +39,6 @@ const AddTicketModal: FunctionComponent<Props> = ({isOpen, onOk, onCancel}) => {
         }
     }, [isOpen, rootStore.currentTicket])
 
-    console.log(data);
-
     return (
         <Modal
             maskClosable={false}
@@ -63,17 +61,9 @@ const AddTicketModal: FunctionComponent<Props> = ({isOpen, onOk, onCancel}) => {
                     onCancel();
                 }
             }
-            onOk={() => {
-                onOk(new Ticket(data));
-                setData({
-                    title: '',
-                    text: '',
-                    addressName: '',
-                    coordinates: {
-                        lat: 0,
-                        lng: 0
-                    }
-                })
+            onOk={async () => {
+                const newTicket = new Ticket(data);
+                await onOk(newTicket);
             }} visible={isOpen}>
             {
                 rootStore.currentTicket === null ? (

@@ -13,14 +13,7 @@ class RootStore {
     currentTicket: Ticket | null = null;
 
     @observable
-    tickets: Ticket[] = [new Ticket({
-        title: 'כותרת',
-        text: 'LOl',
-        coordinates: {
-            lng: 31.942449253421216,
-            lat: 34.88433243329109
-        }
-    })];
+    tickets: Ticket[] = [];
 
     @observable
     currentLocation: {
