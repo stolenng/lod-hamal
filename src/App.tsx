@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Map from "./components/map";
+import {PlusCircleFilled} from '@ant-design/icons';
+import AddTicketModal from "./components/add-ticket-modal";
+import {useStore} from "./helpers/use-store";
+import {observer} from "mobx-react-lite";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const rootStore = useStore();
+
+    return (
+        <div className="App">
+            <Map/>
+            <PlusCircleFilled onClick={() => rootStore.setModal(true)} className='add-ticket'/>
+            <AddTicketModal
+                onOk={async (ticket) => {
+                    rootStore.addTicket(ticket);
+                    rootStore.setModal(false);
+                    await rootStore.update();
+                }}
+                isOpen={rootStore.isModalOpen}
+                onCancel={() => rootStore.setModal(false)}
+            />
+        </div>
+    );
 }
 
-export default App;
+export default observer(App);
