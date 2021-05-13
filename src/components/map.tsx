@@ -1,4 +1,7 @@
-import ReactMapboxGl, {Feature, Marker, Popup} from 'react-mapbox-gl';
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
+import ReactMapboxGl, {Popup} from 'react-mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {useEffect} from "react";
 import {useStore} from "../helpers/use-store";
